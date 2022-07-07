@@ -1,36 +1,23 @@
 import requests
 from lxml import html
+from bs4 import BeautifulSoup
 
-headers = {
-    'authority': 'www.sudoku.com',
-    'cache-control': 'max-age=0',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36',
-    'sec-fetch-dest': 'document',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-user': '?1',
-    'accept-language': 'en-US,en;q=0.9',
-}
+DIFFICULTY = 1                                  #1..4
+url = f"https://nine.websudoku.com/?level={DIFFICULTY}"
+page = requests.get(url)
 
-url = "https://sudoku.com/easy"
+soup = BeautifulSoup(page.content, 'html.parser')
 
-session = requests.session()
-
-response = session.get(url, headers=headers)
-
-if response.status_code == 200:
-    print("Success")
-else:
-    print("Bad result")
-
-soup = BeautifulSoup(response.text, 'html.parser')
-
-for element in soup.find_all('li', class_='collection-product'):
-    name = element.find('h1', class_="product-card__title").text.strip()
-    price = element.find('span', class_="product-card__price").text.strip()
-    link = "https://kith.com/" + element.find('a').get('href')
-
-
-#tree = html.fromstring(url)
+board = []
+# 9r9c row-first
+for r in range(9):
+    board.append([])
+    for c in range(9):
+        container = soup.find(id=f"c{r}{c}")
+        try:
+            newval = container.findChild("input")['value']
+        except:
+            newval = ''
+        board.append(newval)
+        
+print(board)
