@@ -29,4 +29,16 @@ for r in range(9):
 sudoku = Board(board)
 sudoku.printBoard()
 
+for i in range(9):
+    for j in range(9):
+        if sudoku.cells[i+9+j] != "-":
+            v, h = sudoku.checkCrossElements([i, j])
+            a = False
+            print(v, "\n\n")
+            print(h), "\n\n"
+            print(set(v), set(h))
+            if len(set(v)) == len(v) and len(set(h)) == len(h):
+                a = True
+            print(f"cell [{i},{j}] is valid? - {a}")
+
 # TEST

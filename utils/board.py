@@ -23,15 +23,20 @@ class Board:
             
 
 
-    def checkCrossElements(self, point) -> list:
-        cross_elements = []
+    def checkCrossElements(self, point) -> list: # возвращать строку + столбец
+        h_elements = []
+        v_elements = []
         x = point[0]
         y = point[1]
-        while pointX := x < 81:
+        pointX = x
+        pointY = -1
+        while pointX < 72:
             pointX += 9
-            if pointX != x:
-                cross_elements.append(self.cells[pointX])
-        while pointY := -1 < 9:
-            if item := y * COLS + pointY != y:
-                cross_elements.append(self.cells[item])
-        return cross_elements
+            if pointX != x and self.cells[pointX] != "":
+                v_elements.append(self.cells[pointX])
+        while pointY < 9:
+            item = y * COLS + pointY
+            if item != y and self.cells[item] != "":
+                h_elements.append(self.cells[item])
+            pointY += 1
+        return v_elements, h_elements

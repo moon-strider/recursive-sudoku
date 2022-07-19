@@ -1,4 +1,4 @@
-import sudoku.board
+import utils.board
 from utils.cli import cli
 from utils.misc import glob
 from utils.misc import misc
