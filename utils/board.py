@@ -24,19 +24,22 @@ class Board:
 
 
     def checkCrossElements(self, point) -> list: # возвращать строку + столбец
-        h_elements = []
-        v_elements = []
-        x = point[0]
-        y = point[1]
+        x = point[1]
+        y = point[0]
+        h_elements = [self.cells[x+COLS*y]] if self.cells[x+COLS*y] != "" else []
+        v_elements = [self.cells[x+COLS*y]] if self.cells[x+COLS*y] != "" else []
         pointX = x
-        pointY = -1
+        pointY = 0
         while pointX < 72:
             pointX += 9
-            if pointX != x and self.cells[pointX] != "":
+            if pointX != y*COLS+x and self.cells[pointX] != "":
                 v_elements.append(self.cells[pointX])
         while pointY < 9:
             item = y * COLS + pointY
-            if item != y and self.cells[item] != "":
+            if item != y*COLS+x and self.cells[item] != "":
                 h_elements.append(self.cells[item])
             pointY += 1
-        return v_elements, h_elements
+        if len(set(v_elements)) == len(v_elements) and \
+            len(set(h_elements)) == len(h_elements):
+            return True
+        return False

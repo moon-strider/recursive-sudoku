@@ -31,14 +31,11 @@ sudoku.printBoard()
 
 for i in range(9):
     for j in range(9):
-        if sudoku.cells[i+9+j] != "-":
-            v, h = sudoku.checkCrossElements([i, j])
-            a = False
-            print(v, "\n\n")
-            print(h), "\n\n"
-            print(set(v), set(h))
-            if len(set(v)) == len(v) and len(set(h)) == len(h):
-                a = True
-            print(f"cell [{i},{j}] is valid? - {a}")
+        if sudoku.cells[i*9+j] != "-":
+            if val := not sudoku.checkCrossElements([i, j]):
+                print("Puzzle is invalid")
+                break
+    if i == j == 8:
+        print("Puzzle is valid")
 
 # TEST
