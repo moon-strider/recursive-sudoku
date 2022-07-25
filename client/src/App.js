@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import SudokuBoard from "./components/SudokuBoard";
+import SudokuLink from "./components/SudokuLink";
 import './styles/App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     return (
       <div className="App">
         <SudokuBoard buttonsInit={buttons}/>
+        <SudokuLink/>
       </div>
     );
   }
