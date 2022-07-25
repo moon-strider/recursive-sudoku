@@ -1,3 +1,1 @@
-utils/__pycache__/*
-sudoku/__pycache__/*
-.vscode/settings.json
+server/__pycache__/board.cpython-310.pyc

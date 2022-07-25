@@ -32,10 +32,25 @@ sudoku.printBoard()
 for i in range(9):
     for j in range(9):
         if sudoku.cells[i*9+j] != "-":
-            if val := not sudoku.checkCrossElements([i, j]):
+            val, _ = sudoku.checkCrossElements([i, j])
+            if not val:
                 print("Puzzle is invalid")
                 break
     if i == j == 8:
         print("Puzzle is valid")
 
+numbers = [i for i in range(1, 10)]
+
+# solved = Board(board)
+
+# def solve(board):
+#     for i in range(9):
+#         for j in range(9):
+#             if solved.cells[i*9+j] == "-":
+#                 for n in numbers:
+#                     val, _ = board.checkCrossElements([i, j])
+#                     if val:
+#                         solve(board)
+                
+# solved.printBoard()
 # TEST

@@ -23,7 +23,7 @@ class Board:
             
 
 
-    def checkCrossElements(self, point) -> list: # возвращать строку + столбец
+    def checkCrossElements(self, point) -> list: # Возвращать ещё local 3x3 grid
         x = point[1]
         y = point[0]
         h_elements = [self.cells[x+COLS*y]] if self.cells[x+COLS*y] != "" else []
@@ -39,7 +39,8 @@ class Board:
             if item != y*COLS+x and self.cells[item] != "":
                 h_elements.append(self.cells[item])
             pointY += 1
+        elements = [h_elements, v_elements]
         if len(set(v_elements)) == len(v_elements) and \
             len(set(h_elements)) == len(h_elements):
-            return True
-        return False
+            return True, elements
+        return False, elements
