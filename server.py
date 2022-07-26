@@ -4,11 +4,10 @@ from flask import Flask, request, send_from_directory
 from flask_cors import CORS, cross_origin
 from lxml import html
 from bs4 import BeautifulSoup
-from board import Board
 
 sys.setrecursionlimit(100000)
 
-app = Flask(__name__, static_folder='client/build')
+app = Flask(__name__, static_folder='client/build', static_url_path='')
 CORS(app)
 
 board = []
@@ -59,7 +58,7 @@ def solve():
 
 @app.route('/')
 def serve():
-    return send_from_directory(app.static_folder, 'intex.html')
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route("/getpuzzle")
