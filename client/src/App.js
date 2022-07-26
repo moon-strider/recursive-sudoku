@@ -10,7 +10,7 @@ function App() {
   const [buttons, setButtons] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getpuzzle")
+    fetch("/getpuzzle")
     .then( res => res.json() )
     .then( data => { setData(data) } )
   }, [])
@@ -21,7 +21,7 @@ function App() {
       headers: {'content-type': 'application/json',},
       body: JSON.stringify(data)
     }
-    fetch("http://127.0.0.1:5000/solvepuzzle", fetchOptions,)
+    fetch("/solvepuzzle", fetchOptions,)
     .then( res => res.json() )
     .then( data => { setData(data) } )
   }
