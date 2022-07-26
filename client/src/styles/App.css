@@ -15,7 +15,6 @@
 
 .sudoku-board {
     border: 2px solid black;
-    width: fit-content;
 }
 
 .row-third {

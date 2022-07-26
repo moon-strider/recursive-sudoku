@@ -30,6 +30,16 @@ def getpuzzle():
     }
 
 
+@app.route("/solvepuzzle", methods=['POST'])
+def solvepuzzle():
+    board = request.get_json()["board"]
+
+    board[0] = "10"
+
+    return {
+        "board": board
+    }
+
 
 if __name__ == '__main__':
     app.run(debug=True)

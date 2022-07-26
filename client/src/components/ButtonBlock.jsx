@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import SudokuButton from "./SudokuButton";
 
 const ButtonBlock = (props) => {

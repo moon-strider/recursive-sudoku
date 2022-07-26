@@ -11,26 +11,24 @@ const SudokuBoard = (props) => {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 blocks[b].push(props.buttonsInit[(i_shift+i)*9 + (j_shift*3)+j]);
-                //console.log(`getting item i=${(i_shift+i)}, j=${j_shift*3+j}`);
-                // mb fixit
             }
         }
     }
     console.log(blocks);
 
     return (
-        <div className="sudokuBoard">
-            <div className="rowThird">
+        <div className="sudok-board">
+            <div className="row-third">
                 <ButtonBlock buttonsInit={blocks[0]}/>
                 <ButtonBlock buttonsInit={blocks[1]}/>
                 <ButtonBlock buttonsInit={blocks[2]}/>
             </div>
-            <div className="rowThird">
+            <div className="row-third">
                 <ButtonBlock buttonsInit={blocks[3]}/>
                 <ButtonBlock buttonsInit={blocks[4]}/>
                 <ButtonBlock buttonsInit={blocks[5]}/>
             </div>
-            <div className="rowThird">
+            <div className="row-third">
                 <ButtonBlock buttonsInit={blocks[6]}/>
                 <ButtonBlock buttonsInit={blocks[7]}/>
                 <ButtonBlock buttonsInit={blocks[8]}/>

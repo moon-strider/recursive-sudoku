@@ -5,31 +5,45 @@ import './styles/App.css';
 
 function App() {
 
-  const [data, setData] = useState([{}])
+  const [data, setData] = useState([{}]);
+  const [buttons, setButtons] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getpuzzle").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
+    fetch("http://127.0.0.1:5000/getpuzzle")
+    .then( res => res.json() )
+    .then( data => { setData(data) } )
   }, [])
 
-  let buttons = [];
-  if (data["board"] != undefined & data["board"] != null) {
-    for (const [key, value] of Object.entries(data["board"])) {
-      buttons.push(value ? value : "-");
+  function solvepuzzle() {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {'content-type': 'application/json',},
+      body: JSON.stringify(data)
     }
+    fetch("http://127.0.0.1:5000/solvepuzzle", fetchOptions,)
+    .then( res => res.json() )
+    .then( data => { setData(data) } )
   }
+  
+  useEffect(
+    () => {
+      let tmp_buttons = []
+      if (data["board"] != undefined) {
+        for (const [key, value] of Object.entries(data["board"])) {
+          tmp_buttons.push(value ? value : "-");
+        }
+      console.log(tmp_buttons)
+      setButtons(tmp_buttons);
+      }
+    }
+  );
 
-  if (data["board"] != undefined & data["board"] != null) {
+  if (buttons[0] != undefined) {
     return (
       <div className="App">
         <SudokuBoard buttonsInit={buttons}/>
         <SudokuLink/>
+        <button onClick={solvepuzzle}>Solve</button>
       </div>
     );
   }
