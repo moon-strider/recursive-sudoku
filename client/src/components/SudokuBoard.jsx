@@ -17,7 +17,7 @@ const SudokuBoard = (props) => {
     console.log(blocks);
 
     return (
-        <div className="sudok-board">
+        <div className="sudoku-board">
             <div className="row-third">
                 <ButtonBlock buttonsInit={blocks[0]}/>
                 <ButtonBlock buttonsInit={blocks[1]}/>

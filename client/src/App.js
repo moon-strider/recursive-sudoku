@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import SolveButton from "./components/SolveButton";
 import SudokuBoard from "./components/SudokuBoard";
 import SudokuLink from "./components/SudokuLink";
 import './styles/App.css';
@@ -30,20 +31,20 @@ function App() {
       let tmp_buttons = []
       if (data["board"] != undefined) {
         for (const [key, value] of Object.entries(data["board"])) {
-          tmp_buttons.push(value ? value : "-");
+          tmp_buttons.push(value != "0" ? value : "");
         }
       console.log(tmp_buttons)
       setButtons(tmp_buttons);
       }
     }
-  );
+  , [data]);
 
   if (buttons[0] != undefined) {
     return (
       <div className="App">
         <SudokuBoard buttonsInit={buttons}/>
+        <SolveButton onClick={solvepuzzle}/>
         <SudokuLink/>
-        <button onClick={solvepuzzle}>Solve</button>
       </div>
     );
   }

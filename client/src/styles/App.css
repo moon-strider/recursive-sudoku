@@ -23,7 +23,7 @@
 }
 
 .button-block {
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .btn {
@@ -51,7 +51,7 @@
 }
 
 .source-link-container {
-    margin-top: 5vh;
+    margin-top: 3vh;
     display: flex;
     justify-content: center;
 }
@@ -64,10 +64,26 @@
     text-decoration: none;
 }
 
-.source-link-container:hover {
+.source-link:hover {
     z-index: 100;
     transition: 0.1s ease-in-out;
     color: bisque;
-    transform: scale(1.3);
+    transform: scale(1.03);
     background: none;
+}
+
+.solve-button {
+    margin-top: 2vh;
+    padding: 10px 30px 10px 30px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 17px;
+    font-size: 25pt;
+}
+
+.solve-button:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: rgb(102, 102, 187);
+    transform: scale(1.03);
+    cursor: grab;
 }
