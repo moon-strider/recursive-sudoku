@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import SolveButton from "./components/SolveButton";
+import Button from "./components/Button";
 import SudokuBoard from "./components/SudokuBoard";
 import SudokuLink from "./components/SudokuLink";
 import './styles/App.css';
@@ -8,22 +8,32 @@ function App() {
 
   const [data, setData] = useState([{}]);
   const [buttons, setButtons] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [solving, setSolving] = useState(false);
 
   useEffect(() => {
-    fetch("/getpuzzle")
-    .then( res => res.json() )
-    .then( data => { setData(data) } )
+    getpuzzle()
   }, [])
 
-  function solvepuzzle() {
+  async function getpuzzle() {
+    setLoading(true);
+    await fetch("/getpuzzle")
+    .then( res => res.json() )
+    .then( data => { setData(data) } )
+    setLoading(false);
+  }
+
+  async function solvepuzzle() {
+    setSolving(true);
     const fetchOptions = {
       method: 'POST',
       headers: {'content-type': 'application/json',},
       body: JSON.stringify(data)
     }
-    fetch("/solvepuzzle", fetchOptions,)
+    await fetch("/solvepuzzle", fetchOptions,)
     .then( res => res.json() )
     .then( data => { setData(data) } )
+    setSolving(false);
   }
   
   useEffect(
@@ -43,7 +53,11 @@ function App() {
     return (
       <div className="App">
         <SudokuBoard buttonsInit={buttons}/>
-        <SolveButton onClick={solvepuzzle}/>
+        <div class="button-row">
+          <Button loading={solving} onClick={solvepuzzle} text={"Solve"}/>
+          <Button loading={loading} onClick={getpuzzle} text={"Refresh"}/>
+          <Button onClick={solvepuzzle} text={"Check"}/>
+        </div>
         <SudokuLink/>
       </div>
     );
