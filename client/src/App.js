@@ -56,7 +56,6 @@ function App() {
         <div class="button-row">
           <Button loading={solving} onClick={solvepuzzle} text={"Solve"}/>
           <Button loading={loading} onClick={getpuzzle} text={"Refresh"}/>
-          <Button onClick={solvepuzzle} text={"Check"}/>
         </div>
         <SudokuLink/>
       </div>

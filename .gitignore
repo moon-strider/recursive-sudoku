@@ -1,2 +1,4 @@
 server/__pycache__/board.cpython-310.pyc
 test.ipynb
+/client/.idea
+.idea

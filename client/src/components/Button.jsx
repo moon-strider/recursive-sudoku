@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 
 export default function Button({onClick, text, loading}) {
   if (!loading) {
@@ -8,7 +7,7 @@ export default function Button({onClick, text, loading}) {
     )
   } else {
     return (
-      <button className='button' onClick={() => {}}>Loading...</button>
+      <button className='button' disabled={true} onClick={() => {}}>Loading...</button>
     )
   }
 }
