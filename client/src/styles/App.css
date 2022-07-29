@@ -5,8 +5,8 @@
     background-color: darkblue;
 }
 
-.root {
-    background-color: darkblue;
+html {
+    background-color: darkblue !important;
 }
 
 .App {
