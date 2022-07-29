@@ -8,6 +8,10 @@ Fast forward a few months — I decided to learn **React** and then after learni
 - get a new sudoku puzzle
 - solve the puzzle
 
+It looks like this:
+
+![img.png](img.png)
+
 ## Deeper into the rabbit hole
 
 But by that time I had made a little bit of progress in recursively solving sudoku using python and I would have no fun redoing it in JavaScript. So another thought appeared — to create a basic server that would be able to get new puzzles, recieve puzzles from client, solve recieved puzzles and then return them back to the client.
